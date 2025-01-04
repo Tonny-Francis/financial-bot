@@ -14,6 +14,10 @@ func LoadMigration(databaseURL string) error {
 	}
 
 	if err := m.Up(); err != nil {
+		if err == migrate.ErrNoChange {
+			return nil
+		}
+
 		return err
 	}
 
@@ -28,6 +32,10 @@ func RollbackMigration(databaseURL string) error {
 	}
 
 	if err := m.Down(); err != nil {
+		if err == migrate.ErrNoChange {
+			return nil
+		}
+
 		return err
 	}
 
