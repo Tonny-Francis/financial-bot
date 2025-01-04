@@ -1,0 +1,8 @@
+# Ignore To Binary Files
+bin/
+
+# Ignore To Temporary Files
+tmp/
+
+# Igonre To Environment File
+.env
