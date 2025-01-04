@@ -14,6 +14,15 @@ type environments struct {
 
 	// Config Type Env
 	GO_ENV string `validate:"required"`
+
+	// Config Database
+	DATABASE_AGENT    string `validate:"required"`
+	DATABASE_SCHEMA   string `validate:"required"`
+	DATABASE_USER     string `validate:"required"`
+	DATABASE_PASSWORD string `validate:"required"`
+	DATABASE_HOST     string `validate:"required"`
+	DATABASE_PORT     string `validate:"required"`
+	DATABASE_SSLMODE  string `validate:"required"`
 }
 
 func loadEnv() (*environments, error) {
@@ -32,6 +41,14 @@ func loadEnv() (*environments, error) {
 		PORT:     getEnv("PORT", useOS),
 
 		GO_ENV: getEnv("GO_ENV", useOS),
+
+		DATABASE_AGENT:    getEnv("DATABASE_AGENT", useOS),
+		DATABASE_SCHEMA:   getEnv("DATABASE_SCHEMA", useOS),
+		DATABASE_USER:     getEnv("DATABASE_USER", useOS),
+		DATABASE_PASSWORD: getEnv("DATABASE_PASSWORD", useOS),
+		DATABASE_HOST:     getEnv("DATABASE_HOST", useOS),
+		DATABASE_PORT:     getEnv("DATABASE_PORT", useOS),
+		DATABASE_SSLMODE:  getEnv("DATABASE_SSLMODE", useOS),
 	}
 
 	// Validate Struct

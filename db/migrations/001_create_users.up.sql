@@ -1,0 +1,9 @@
+-- CREATE TABLE USERS
+CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    create_at TEXT NOT NULL,
+    update_at TEXT NOT NULL
+);

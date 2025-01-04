@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/sirupsen/logrus"
 )
@@ -33,6 +34,15 @@ func LoadContainer() (context.Context, *Container, error) {
 	if err != nil {
 		return nil, nil, err
 	}
+
+	// Load Migrations
+	err = LoadMigration(fmt.Sprintf("%s://%s:%s@%s:%s/%s?sslmode=%s", environments.DATABASE_AGENT, environments.DATABASE_USER, environments.DATABASE_PASSWORD, environments.DATABASE_HOST, environments.DATABASE_PORT, environments.DATABASE_SCHEMA, environments.DATABASE_SSLMODE))
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	logger.Info("Migrations Loaded")
 
 	// Load Gin Mode Into Context
 	ctx = context.WithValue(ctx, ginModeKey, ginMode(environments.GIN_MODE))
